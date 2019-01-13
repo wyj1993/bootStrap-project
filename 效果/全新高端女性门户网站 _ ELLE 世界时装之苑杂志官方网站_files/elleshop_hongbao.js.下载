@@ -1,0 +1,103 @@
+window.onload = function(){
+	validationUrl(window.location.href);
+};
+
+function validationUrl(url){
+	if (jQuery.cookie('LotteryCloseTimes') != null)
+	{
+		var checkclosetimes = jQuery.cookie('LotteryCloseTimes');
+		if(checkclosetimes*1 >= 3)
+		{
+			return false;
+		}
+	}
+	
+	var testArray = new Array();
+	//新娘
+	testArray.push({item:/^http:\/\/www.ellechina.com\/wedding\/([\s\S]+)$/});
+	//星座
+	testArray.push({item:/^http:\/\/www.ellechina.com\/horoscope\/([\s\S]+)$/});
+	//街拍
+	testArray.push({item:/^http:\/\/www.ellechina.com\/fashion\/snapshot\/([\s\S]+)$/});
+	//论坛首页
+	testArray.push({item:/http:\/\/club.ellechina.com\/forum.php$/});
+	//论坛列表页
+	testArray.push({item:/http:\/\/club.ellechina.com\/forum-([\s\S]+)-([\s\S]+).html$/});
+	//论坛内页
+	testArray.push({item:/http:\/\/club.ellechina.com\/thread-([\s\S]+)-([\s\S]+)-([\s\S]+).html$/});
+
+
+	for (var i = 0; i < testArray.length; i++) {
+		var urlTest = testArray[i].item;
+		if(urlTest.test(url))
+		{
+			showHongbao();
+			return true;
+		}
+	};
+	return false;
+}
+
+function showHongbao(){
+	var ckvalue = 0;
+
+    var rqurl = 'http://www.elleshop.com.cn/Ajax/Customer/AjaxCheckLotteryCookie.aspx'
+
+    jQuery.ajax({
+	        url: rqurl + "?j=" + new Date().getMilliseconds(),
+	        //type: "POST",
+	  		//async: false,
+	        dataType: "jsonp",
+	        jsonp: "jsonpcallback",
+	        success: function(data) {
+	            ckvalue =data.isExits;
+
+	            if (ckvalue  == "1") {
+	                return;
+	            }else
+	            {
+	                var url = 'http://www.elleshop.com.cn/Customer/LotteryResult.aspx';
+	                var easing = "linear",
+	                speed = 1200;
+	                var hongbao_wrapper = "<div id='hongbao_wrapper' style='display:block;height:800px;width:550px;top:5px;position:absolute;left:400px;overflow:hidden;z-index: 998;'><a id='hongbao_close' title='关闭' style='background:url(http://www.elleshop.com.cn/WebResources/default/Nest/images/hongbao/ico_close.png) top left no-repeat;width:34px;height:38px;display:inline-block;position:absolute;left:500px;top: 0px;cursor:pointer;opacity:0.8;z-index:1000;'></a><div id='hongbao' style='position:absolute;left:1px;top:-494px;z-index:999;'><a href='javascript:void(0);'><img src='http://www.elleshop.com.cn/WebResources/default/Nest/images/hongbao/hongbao.png' width='500' height='500' /></a></div></div>";
+	                jQuery("body").append(hongbao_wrapper);
+
+	                jQuery("#hongbao a").click(function() {
+	                    jQuery("#hongbao").stop()
+	                    jQuery("#hongbao_wrapper").hide();
+						window.open(url);
+	                });
+
+	                jQuery("a#hongbao_close").click(function() {
+	                    jQuery("#hongbao").stop()
+	                    jQuery("#hongbao_wrapper").hide();
+						var lotteryCloseTimes = jQuery.cookie('LotteryCloseTimes');
+						if(lotteryCloseTimes == null){
+							lotteryCloseTimes = 1;
+						}
+						else{
+							lotteryCloseTimes = lotteryCloseTimes*1 +1;
+						}
+						jQuery.cookie('LotteryCloseTimes',lotteryCloseTimes,{expires:1});
+	                })
+	                .hover(function() {
+	                    jQuery(this).css({ opacity: 1.0 })
+	                },
+	                 function() {
+	                     jQuery(this).css({ opacity: 0.8 })
+	                 });
+	                jQuery("#hongbao").animate({ top: "-328px", left: "30px" }, speed, easing)
+	                    .animate({ top: "-80px", left: "0px" }, speed, easing)
+	                    .animate({ top: "50px", left: "0px" }, speed, easing, function() {
+	                        //
+	                    })
+
+	                jQuery("a#hongbao_close").click(function() {
+	                    jQuery(".hongbao_wrapper,#div0").hide();
+	                })
+	            }
+
+
+	        }
+	    });
+}

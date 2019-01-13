@@ -1,0 +1,75 @@
+@charset "utf-8";
+/*footer*/
+.footer{width:auto;margin:0 auto;background-color:#fff;}
+.footer .f-top{background-color:#FAFAFA;}
+.footer .f-bottom{background-color:#1F1B1C}
+.footer .f-top ul{width:1000px;margin:0 auto;padding: 0 0 30px 0;}
+.footer .f-top ul li{float:left;}
+.footer .f-top .ft-left,.footer .f-top .ft-right{width:332px;}
+.footer .f-top .ft-left .magazine{display:block;width:332px;height:425px;}
+.footer .f-top .ft-left .bottom{display:block;width:285px;height:29px;margin-left:20px;background:url(../images/theme/index/dingyue.jpg) no-repeat;}
+.footer .f-top .ft-left .bottom:hover{background:url(../images/theme/index/dingyue_hover.jpg) no-repeat;}
+.footer .f-top .ft-left a span{display:block;width:230px;height:300px;margin-left:25px;}
+.footer .f-top .ft-left a .center-img{display:block;width:135px;margin:10px auto}
+.footer .f-top .ft-middle{width:334px;margin-top:20px;border-right:1px dotted #000;border-left:1px dotted #000;}
+.footer .f-top .ft-middle .top-gif{display:block;height:310px;width:334px;}
+.footer .f-top .ft-middle .top-gif .center-gif{width:334px;height:330px;margin-top:-20px}
+.footer .f-top .ft-middle img{width:334px;height:125px;}
+.footer .f-top .ft-right img{width:332px;height:455px;overflow:hidden}
+
+.footer .f-bottom .fb-warp{position:relative;width:1000px;margin:0 auto;padding:30px 0 100px 0;}
+.footer .f-bottom .backtop{display:block;position:absolute;top:-27px;left:923px;width:59px;height:58px;background:url(../images/theme/index/backtop.png) no-repeat;}
+.footer .f-bottom .backtop:hover{background:url(../images/theme/index/backtop_hover.png) no-repeat;}
+.footer .f-bottom .fb-warp .fb-top{border-bottom:1px solid #3c3c3c;}
+.footer .f-bottom .fb-warp .fb-top .left{float:left;width:165px;/*overflow:hidden;*/zoom:1}
+.footer .f-bottom .fb-warp .fb-top .left .bottom-logo{display:block;width:160px;height:58px;background:url(../images/theme/index/footerlogo.png) no-repeat;}
+.footer .f-bottom .fb-warp .fb-top .left ul li{float:left;margin:25px 0 0 10px;width:30px;height:22px;_margin:25px 0 0 6px}
+.footer .f-bottom .fb-warp .fb-top .left ul li.weixin{position:relative;}
+.footer .f-bottom .fb-warp .fb-top .left ul li.weixin a i{position: absolute;left: 0px;top: -145px;display: none;width: 144px;height: 144px;background: url(../images/theme/index/em10.png) no-repeat;z-index: 500;}
+.footer .f-bottom .fb-warp .fb-top .left ul li a{display:block;width:30px;height:22px;background:url(../images/theme/index/shareicon.png) no-repeat;}
+.footer .f-bottom .fb-warp .fb-top .left ul li a:hover{background:url(../images/theme/index/shareicon_hover.png) no-repeat;}
+.footer .f-bottom .fb-warp .fb-top .left ul .weibo a,.footer .f-bottom .fb-warp .fb-top .left ul .weibo a:hover{background-position:-40px 0;}
+.footer .f-bottom .fb-warp .fb-top .left ul .qzone a,.footer .f-bottom .fb-warp .fb-top .left ul .qzone a:hover{background-position:-79px 0;}
+.footer .f-bottom .fb-warp .fb-top .left ul .txweibo a,.footer .f-bottom .fb-warp .fb-top .left ul .txweibo a:hover{background-position:-119px 0;}
+.footer .f-bottom .fb-warp .fb-top .right{float:left;width:805px;padding-left:30px;}
+.footer .f-bottom .fb-warp .fb-top .right .fb-t-top h5 ,.footer .f-bottom .fb-warp .fb-top .right .fb-t-bottom h5{font-family: 'Microsoft Yahei','微软雅黑','Verdana';font-size:14px;color:#dbdbdb;}
+.footer .f-bottom .fb-warp .fb-top .right .fb-t-bottom h5{line-height:28px;margin-right:5px;}
+.footer .f-bottom .fb-warp .fb-top .right .fb-t-top ul li, .footer .f-bottom .fb-warp .fb-top .right .fb-t-bottom  ul li{float:left;margin:14px 23px 0 0;}
+.footer .f-bottom .fb-warp .fb-top .right .fb-t-top ul li a,.footer .f-bottom .fb-warp .fb-top .right .fb-t-bottom  ul li a,.footer .f-bottom .fb-warp .fb-bottom .fb-b-top li a{_white-space: nowrap;font-family: 'Microsoft Yahei','微软雅黑','Verdana';font-size:14px;color:#dbdbdb;text-decoration: none;}
+.footer .f-bottom .fb-warp .fb-top .right .fb-t-bottom{margin-top:6px;padding-bottom:13px;}
+.footer .f-bottom .fb-warp .fb-top .right .fb-t-bottom h5,.footer .f-bottom .fb-warp .fb-bottom .fb-b-top li{float:left}
+.footer .f-bottom .fb-warp .fb-top .right .fb-t-bottom h5{margin-top:7px;}
+.footer .f-bottom .fb-warp .fb-top .right .fb-t-bottom  ul li{}
+.footer .f-bottom .fb-warp .fb-middle{height:79px;text-align:center;border-bottom:5px solid #3c3c3c;}
+.footer .f-bottom .fb-warp .fb-middle img{margin-top:20px;}
+.footer .f-bottom .fb-warp .fb-bottom .fb-b-top ul{text-align:center;width:885px;margin:0 auto}
+.footer .f-bottom .fb-warp .fb-bottom .fb-b-top li{position:relative;margin:30px 26px 0 0;} 
+.footer .f-bottom .fb-warp .fb-bottom .fb-b-top li i{display:block;position:absolute;top:0;left:69px;width:1px;height:16px;background:#C4C4C4} 
+.footer .f-bottom .fb-warp .fb-bottom .fb-b-bottom{padding:30px 0 0 26px;}
+.footer .f-bottom .fb-warp .fb-bottom .fb-b-bottom span{display:block;float:left;margin:3px 30px 0 12px;font-family: 'Microsoft Yahei','微软雅黑','Verdana';font-size:12px;color:#dbdbdb;} 
+.footer .f-bottom .fb-warp .fb-bottom .fb-b-bottom img{display:block;float:left;width:20px;height:20px;overflow:hidden;zoom:1;}
+.footer .f-bottom .fb-warp .fb-bottom .fb-c-bottom{padding-top:28px;text-align:center;color:#dbdbdb;font-size:12px;}
+.footer .f-bottom .fb-warp .fb-bottom .fb-c-bottom span{margin:3px 20px 0 15px;font-family: 'Microsoft Yahei','微软雅黑',\;} 
+.footer .f-bottom .fb-warp .fb-bottom .fb-c-bottom a{color:#dbdbdb;text-decoration:none}
+.footer .f-bottom .fb-warp .fb-bottom .fb-c-bottom img{margin-right:9px; vertical-align:middle}
+/*sprites*/
+.footer .f-top .ft-left .bottom,.footer .f-top .ft-left .bottom:hover,.footer .f-bottom .backtop,.footer .f-bottom .backtop:hover,.top-kv .btn-left,.top-kv .btn-right,.top-kv .btn-left:hover,.top-kv .btn-right:hover{background-image: url(../images/theme/common/icons-sprite.png);background-repeat: no-repeat;}
+.footer .f-top .ft-left .bottom{background-position: 0 -304px;}
+.footer .f-top .ft-left .bottom:hover{background-position: 0 -336px;}
+.footer .f-bottom .backtop{background-position: 0 0;}
+.footer .f-bottom .backtop:hover{background-position: 0 -60px;}
+.top-kv .btn-left{background-position: 0 -120px;}
+.top-kv .btn-right{background-position: 0 -212px;}
+.top-kv .btn-left:hover{background-position: 0 -166px;}
+.top-kv .btn-right:hover{background-position: 0 -258px;}
+
+.footer .baomihualic {margin-top:20px; color: #dbdbdb; text-align:center;line-height:28px}
+.footer .baomihualic span{margin:0 1em;}
+.footer .baomihualic a {color: #dbdbdb }
+
+.footer .fb-b-middle p{ font-size: 14px; font-family: 'Microsoft Yahei','Verdana'; color: #f0f0f0; padding: 27px 0 0 70px; }
+.footer .f-bottom .fb-warp .fb-bottom .fb-b-top ul{ width: 970px; }
+
+.footer .f-bottom .fb-warp .fb-bottom .fb-about li i{ left: 62px; }
+.footer .f-bottom .fb-warp .fb-bottom .fb-about li{ margin: 30px 16px 0 0; }
+.footer .f-bottom .fb-warp .fb-bottom .fb-about li:last-child{ margin-right: 0; }

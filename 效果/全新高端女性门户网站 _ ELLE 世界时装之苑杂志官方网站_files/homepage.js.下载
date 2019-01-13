@@ -1,0 +1,129 @@
+$(document).ready(function(){
+	$('.kv_type_ad').each(function(){
+		if($(this).find('img').size() <= 0){
+		  $(this).remove();
+		}
+  	});
+ 	function replaceAdsame(obj, kvadname, callback) { //避免kv有传样广告代码时重复统计
+        var kv = $(obj).find(kvadname);
+        for (var i = 0; i < kv.length; i++) {
+             kv.eq(i).attr('data-src',kv.eq(i).find('script').attr('src'));
+            kv.eq(i).html(kv.eq(i).find("div").wrap());
+        }
+        if (callback) {
+            callback();
+        }
+    }
+
+     function creatjs(src) {
+          var js = document.createElement('script');
+          js.style.display='none';
+          js.type = 'text/javascript';
+          js.src = src;
+          return js;
+     }
+
+
+    var kvConfig={
+        obj:'.top-kv',
+        kv_type_name:'.kv_type_ad',
+        category:'index'
+    }
+
+    replaceAdsame(kvConfig.obj,kvConfig.kv_type_name);
+
+    $(kvConfig.obj).find("ul").bxSlider({
+		nextSelector: '.top-kv .btn-right',
+		prevSelector: '.top-kv .btn-left',
+		pause: 3000,
+		controls: true,
+		auto: true,
+		pager: false,
+		slideWidth: 680,
+		minSlides: 1,
+		maxSlides: 1,
+		slideMargin: 0,
+        onSliderLoad:function(index){
+          // console.log(index);
+          var el=$(kvConfig.obj).find('li').eq(index+1);
+          if($(el).attr("class")==kvConfig.kv_type_name.replace('.','')){
+            // console.log(index+"::::"+'kv_type_ad')
+            /*执行传样统计js,并且删除执行js*/
+             var src=$(el).attr("data-src");
+             $(el).append(creatjs(src)).find('script').remove();
+             /*ga 统计*/
+            //ga('send', 'event', kvConfig.category+'_list', 'kv_ad_view',$(el).find("a").attr("href")); 
+          }
+        },
+        onSlideBefore: function() {
+
+        },
+        onSlideAfter: function(el,oldIndex,index) {
+
+          if($(el).attr("class")==kvConfig.kv_type_name.replace('.','')){
+            // console.log(index+"::::"+'kv_type_ad')
+            /*执行传样统计js,并且删除执行js*/
+             var src=$(el).attr("data-src");
+             $(el).append(creatjs(src)).find('script').remove();
+             /*ga 统计*/
+            //ga('send', 'event', kvConfig.category+'_list', 'kv_ad_view',$(el).find("a").attr("href")); 
+          }
+
+        },
+        onSlideNext: function() {},
+        onSlidePrev: function() {}
+    });
+	
+	
+	var timestamp = new Date();
+	var $year = timestamp.getFullYear();
+	var $month = timestamp.getMonth()+1;
+	var $day = timestamp.getDate();
+	//alert($year);alert($month);alert($day);
+	var class_$year='number-'+$year;
+	var class_$month='number-'+$month;
+	var class_$day='number-'+$day;
+	$(".c-f1 .c1-left .t-time .year").addClass(class_$year);
+	$(".c-f1 .c1-left .t-time .month").addClass(class_$month);
+	$(".c-f1 .c1-left .t-time .day").addClass(class_$day);
+	
+	$('.content .center-banner').each(function(){
+		if($(this).find('img').size() > 0){
+		    $(this).show();
+		}else if($(this).children('script').first().siblings('script').length > 0){
+			$(this).show();
+		}
+		else{
+			$(this).hide();
+			}
+  	});
+	function adjustBrowser(){  
+	var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串  
+	var isOpera = userAgent.indexOf("Opera") > -1; //判断是否Opera  
+	var isMaxthon = userAgent.indexOf("Maxthon") > -1 ; //判断是否傲游3.0  
+	//var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera ; //判断是否IE   
+	var isFF = userAgent.indexOf("Firefox") > -1 ; //判断是否Firefox  
+	var isSafari = userAgent.indexOf("Safari") > -1 && userAgent.indexOf("Chrome") < 1 ; //判断是否Safari  
+	var isChrome = userAgent.indexOf("Chrome") > -1 ; //判断是否Chrome  
+		  
+	if(isFF){ return "FF"; }  
+	if(isOpera){ return "Opera"; }  
+	if(isMaxthon){ return "Maxthon"; }  
+	if(isSafari){ return "Safari"; }  
+	if(isChrome){ return "Chrome"; }  
+	  
+	} //myBrowser() end  
+	  
+	  
+	if(adjustBrowser()=="Safari") 
+	{ 
+	//console.log("safari");
+	$(".c-f7 .f7-warp li a p").css({"padding":"10px 0px"})
+	} else{//console.log("other")
+	}
+});
+
+
+
+
+

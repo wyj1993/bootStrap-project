@@ -1,0 +1,7 @@
+$(function(){
+    setTimeout(function(){
+        $('.kv_ad_tracking').each(function(){
+            $(this).attr('src', $(this).attr('data').replace(/\[timestamp\]\??/, new Date().valueOf()));
+        });
+    },500);
+});

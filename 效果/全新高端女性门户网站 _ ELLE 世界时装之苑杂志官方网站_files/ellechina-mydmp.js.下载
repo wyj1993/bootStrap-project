@@ -1,0 +1,11 @@
+(function() {
+	var jsEL = document.createElement('script');
+	jsEL.type = 'text/javascript';
+	jsEL.async = true;
+	jsEL.src = "http://i.adsame.com/dmp/mydmp.js";
+	var jsWrap = document.getElementsByTagName('script')[0];
+	jsWrap.parentNode.insertBefore(jsEL, jsWrap);
+})();
+var RT = RT || [];
+RT.push(["set", "_setZone", "dmpelle"]);
+RT.push(["send", "_setTracker"]);

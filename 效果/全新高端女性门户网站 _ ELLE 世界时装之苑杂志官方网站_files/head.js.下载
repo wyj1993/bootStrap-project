@@ -1,0 +1,273 @@
+function init(){
+	var _hgt=$(window).height();
+	$("#top-adv").css('height',_hgt);
+	$("html,body").addClass('fullpage');
+	$(".h-ad .ad-btn").show();
+	$(".content-box .ad-btn").show();
+	$(".center-video .ad-btn").show();
+}
+$(document).ready(function(){
+	if($(".h-ad .h-logo-ad").find('img').size() > 0 || $(".h-ad .h-logo-ad").find('object').length > 0 ){
+		
+		$(".h-ad").show();
+		$(".h-edit").hide();
+	}else if($('.h-ad .h-logo-ad .logo-back script').siblings('script').length > 0){
+		$(".h-ad").show();
+		$(".h-edit").hide();
+	}
+	else{
+		$(".h-ad").hide();
+		$(".h-edit").show();
+		}
+	
+	//初始化页面
+	if($("#top-adv").css("background-image")!="none"){
+		init();
+	}else{
+	$(".h-ad .ad-btn").hide();
+	$(".content-box .ad-btn").hide();//无广告去掉扩展按钮
+	$(".center-video").hide();
+	$(".center-video .ad-btn").hide();//无广告去掉关闭按钮
+	}
+
+	var iframe=$("#ad-iframe");
+    var url=iframe.attr("src");
+    //关闭广告
+        $(".center-video .ad-btn").bind("click",function(){
+            if($.trim(iframe.attr("src")) !=""){
+				$(".center-video .ad-btn").hide();
+				$("#top-adv").addClass("top-adv-hide").animate({height:0},'slow',function(){
+					iframe.attr("src","");
+					$(".top-adv").hide();
+					$("html,body").removeClass('fullpage');
+					if($('.nav').length > 0){Fixed();}
+				});
+            }
+        });
+     //展开广告  
+        $(".h-ad .ad-btn").bind("click",function(){
+          if($.trim(iframe.attr("src")) ==""){
+			iframe.attr("src",url);
+			$(".top-adv").show();
+			$(".center-video .ad-btn").show();
+			$("#top-adv").removeClass("top-adv-hide").animate({height:'1000px'},'slow',function(){
+				$("html,body").addClass('fullpage');
+				if($('.nav').length > 0){Fixed();}
+			});
+			
+          }
+        });
+		$(".content-box .ad-btn").bind("click",function(){
+          if($.trim(iframe.attr("src")) ==""){
+			iframe.attr("src",url);
+			$(".top-adv").show();
+			$(".center-video .ad-btn").show();
+			$("#top-adv").removeClass("top-adv-hide").animate({height:'1000px'},'slow',function(){
+				$("html,body").addClass('fullpage');
+				if($('.nav').length > 0){Fixed();}
+			});
+			
+          }
+        });
+
+	/*tab 切换*/
+    $(".nav .menubar li a").hover(function(){
+        var idx=$(this).parent("li").index();
+        $(".nav .submenu .submenu-drop").hide().eq(idx).show();
+		if($(".nav .submenu .submenu-drop").eq(idx).hasClass('w0')){$(".nav .submenu .w0").hide();}
+		},function(){
+		$(".nav .submenu .submenu-drop").hide()
+		    
+    });
+	
+	$(".nav .submenu .submenu-drop").mouseenter(function(){
+		$(this).show();
+	});
+	$(".nav .submenu .submenu-drop").mouseleave(function(){
+        $(this).hide();
+    });
+	
+	
+	$(".head-inner .followe .follow").mouseenter(function(){
+		$('.head-inner .followe span').animate({top:"41px"},400);
+	});
+	$(".head-inner .followe .follow").mouseleave(function(){
+		$('.head-inner .followe span').animate({top:"0px"},400);		   
+	});
+	$('.head-inner .followe span').mouseenter(function(){
+		$(this).stop().animate({top:"41px"});
+	});
+	$('.head-inner .followe span').mouseleave(function(){
+			if(!$(".head-inner .followe .wechat i").is(":animated")){
+				$('.head-inner .followe span').animate({top:"0px"},400);
+			}
+			else{
+				setTimeout(function(){$('.head-inner .followe span').animate({top:"0px"},400)},600); 
+			}
+	});
+	$('.head-inner .followe .wechat').mouseenter(function(){
+		$(".head-inner .followe .wechat em").fadeIn().addClass("show");
+		$(".head-inner .followe .wechat i").fadeIn().animate({left:"0px"},400);
+	});
+	$('.head-inner .followe .wechat').mouseleave(function(){
+		$(".head-inner .followe .wechat i").fadeOut(600,function(){$(this).removeAttr('style');});
+		$(".head-inner .followe .wechat em").removeClass("show").fadeOut();
+	})	
+	$('.footer .f-bottom .fb-warp .fb-top .left ul li.weixin a').mouseenter(function(){
+		$(".footer .f-bottom .fb-warp .fb-top .left ul li.weixin a i").fadeIn();
+	});
+	$('.footer .f-bottom .fb-warp .fb-top .left ul li.weixin a').mouseleave(function(){
+		$(".footer .f-bottom .fb-warp .fb-top .left ul li.weixin a i").fadeOut(600,function(){$(this).removeAttr('style');});
+		
+	})	
+	//more
+	$('.nav .menubar .c-navbar-more a.more-link').mouseenter(function(){
+		$('.headnav-more .c-navbar-subnav').show().css({"opacity":'1',"visibility":'visible'});
+		})
+	$('.nav .menubar .c-navbar-more a.more-link').mouseleave(function(){
+		$('.headnav-more .c-navbar-subnav').hide().css({"opacity":'0',"visibility":'hidden'});
+		})
+	$('.headnav-more .c-navbar-subnav').mouseenter(function(){
+		$(this).show().css({"opacity":'1',"visibility":'visible'});
+		})
+	$('.headnav-more .c-navbar-subnav').mouseleave(function(){
+		$(this).hide().css({"opacity":'0',"visibility":'hidden'});
+		})
+	function Fixed(){  
+		var offset_top=$('.nav').offset().top;  
+		//var offset_left=$('.nav').offset().left;  
+		//var relative_left=$('.content').position().left;  
+		var limitTop=$('body').offset().top + $('body').outerHeight()- $('.nav').outerHeight();  
+		$(window).scroll(function(){  
+			var top=$(window).scrollTop();  
+			if($(window).scrollTop() > offset_top){  
+				//var relative_left=$('.content').position().left;  
+				//$('.nav').css({'left':'50%','margin-left':'-500px'});
+				$('.nav').addClass("fixed");
+			}else{//如果滚动的高度不大于 moveObj就不动  
+				//$('.nav').removeAttr('style');  
+				$('.nav').removeClass("fixed");
+			}   
+			
+		})   
+	};
+	if($('.nav').length > 0){Fixed();}
+	
+	//$(window).bind("resize", resizeWindow);
+	//function resizeWindow( e ) {
+//		if($('.nav').hasClass('fixed'))
+//		var relative_left=$('.content').position().left;  
+//		$('.nav').css({'left':'50%','margin-left':'-500px'});
+//		};
+	if($(".ad-bodybackground").attr("style")){
+		$(".content-box").addClass("add-ad-content");
+		$('.footer').css({"width":"1020px"})
+	}else{
+		$(".content-box").removeClass("add-ad-content");
+		}
+	//ad
+	var logoback=$('.logo-back').height();
+	var bodyback=$('.body-back').height();
+	var innervideo=$('.inner-video').height();
+	if(innervideo==0){$('.inner-video').hide();$('.center-video').hide();}else{$('.inner-video').show()}
+	if(logoback==0){$('.logo-back').hide();}else{$('.logo-back').show()}
+	if(bodyback==0){$('.body-back').hide();}else{$('.body-back').show()}
+	if($("#top-adv").attr("style")){
+		$(this).show();
+	}else{
+		$(this).hide();
+		}
+	var location_src=IMG_URL+'templates/ellechina/2016/images/theme/common/';
+	//console.log(location_src);
+	if($("#logo_editorial").attr("color")==1){
+		$(".h-edit .h-logo-container").addClass("black");
+		$(".h-edit .h-logo .h-logo-logo img").attr("src",location_src+'logo_black.png');
+	}else if($("#logo_editorial").attr("color")==0){
+		$(".h-edit .h-logo-container").removeClass("black");
+		$(".h-edit .h-logo .h-logo-logo img").attr("src",location_src+'logo_white.png');
+	}else{
+		var src=$("#logo_editorial").attr("data-src");
+		$(".h-ad .h-logo-container").removeClass("black");
+		// console.log(src);
+		if(src==''){$(".h-edit .h-logo .h-logo-logo img").attr("src",location_src+'logo_white.png');}
+		else{$(".h-edit .h-logo .h-logo-logo img").attr("src",src);}
+		
+	}
+	
+	if($("#logo_ad").attr("color")==1){
+		$(".h-ad .h-logo-container").addClass("black");
+		$(".h-ad .h-logo .h-logo-logo img").attr("src",location_src+'logo_black_ad.png');
+	}else if($("#logo_ad").attr("color")==0){
+		$(".h-ad .h-logo-container").removeClass("black");
+		$(".h-ad .h-logo .h-logo-logo img").attr("src",location_src+'logo_white_ad.png');
+	}
+	else if($("#logo_ad").attr("color")==2){
+		var src=$("#logo_ad").attr("data-src");
+		$(".h-ad .h-logo-container").removeClass("black");
+		// console.log(src);
+		if(src==''){$(".h-ad .h-logo .h-logo-logo img").attr("src",location_src+'logo_white_ad.png');}
+		else{$(".h-ad .h-logo .h-logo-logo img").attr("src",src);}
+	}
+	else{
+		$(".h-ad .h-logo .h-logo-logo").css("background-color","#fff");
+		$(".h-ad").height("270px");
+		$(".h-ad .h-logo-container .h-logo-ad").height("270px");
+		$(".h-ad .h-logo .h-logo-logo img").height("60px");
+		$(".h-ad .h-logo").css({"height":"60px","top":"170px","left":"50%","margin-top":"20px","margin-bottom":"20px","margin-left":"-140px"});
+		$(".h-ad .h-logo .h-logo-logo img").attr("src",location_src+'logo_black_small.png');
+		//$(".h-ad .h-logo .h-logo-logo img").hide();
+		
+	}
+	if($("#co_button_ad").attr("color")==1){
+		$(".h-ad i.ad-btn").removeClass("play").addClass("play-b");
+		$(".center-video i.ad-btn").removeClass("close").addClass("close-b");
+		$(".content-box i.ad-btn").removeClass("play").addClass("play-b");
+	}else{
+		$(".h-ad i.ad-btn").removeClass("play-b").addClass("play");
+		$(".center-video i.ad-btn").removeClass("close-b").addClass("close");
+		$(".content-box i.ad-btn").removeClass("play-b").addClass("play");
+	}
+	//----------------------------- 判断浏览器 -------------------------  
+	function myBrowser(){  
+	var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串  
+	var isOpera = userAgent.indexOf("Opera") > -1; //判断是否Opera  
+	var isMaxthon = userAgent.indexOf("Maxthon") > -1 ; //判断是否傲游3.0  
+	//var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera ; //判断是否IE   
+	var isFF = userAgent.indexOf("Firefox") > -1 ; //判断是否Firefox  
+	var isSafari = userAgent.indexOf("Safari") > -1 && userAgent.indexOf("Chrome") < 1 ; //判断是否Safari  
+	var isChrome = userAgent.indexOf("Chrome") > -1 ; //判断是否Chrome  
+	  
+	//if(isIE){   
+//	   var IE5 = IE55 = IE6 = IE7 = IE8 = false;  
+//	   var reIE = new RegExp("MSIE (+);");  
+//	   reIE.test(userAgent);  
+//	   var fIEVersion = parseFloat(RegExp["$1"]);  
+//	  
+//	   IE55 = fIEVersion == 5.5 ;  
+//	   IE6 = fIEVersion == 6.0 ;  
+//	   IE7 = fIEVersion == 7.0 ;  
+//	   IE8 = fIEVersion == 8.0 ;  
+//	  
+//	   if(IE55){ return "IE55"; }  
+//	   if(IE6){ return "IE6"; }  
+//	   if(IE7){ return "IE7"; }  
+//	   if(IE8){ return "IE8"; }  
+//	}  
+	  
+	if(isFF){ return "FF"; }  
+	if(isOpera){ return "Opera"; }  
+	if(isMaxthon){ return "Maxthon"; }  
+	if(isSafari){ return "Safari"; }  
+	if(isChrome){ return "Chrome"; }  
+	  
+	} //myBrowser() end  
+	  
+	  
+	//if(myBrowser()=="Safari") 
+//	{ 
+//	//console.log("safari");
+//	$(".nav .menubar li a.ellefit").css({"padding":"0 20px"})
+//	} else{//console.log("other")
+//	}
+
+})

@@ -1,0 +1,3 @@
+document.write('<div id="adsame-537" style="width:300px;height:510px;border:none;padding:0px;margin:0px;overflow:hidden;position:relative;"><a href="http://hfm.adsame.com/c?z=hfm&la=0&si=5&cg=9&c=537&ci=4&or=1604&l=13814&bg=13814&b=11298&u=http://mini.ellechina.com/mustknow/dial/" target="_blank"><img src="http://adsame.hearst.com.cn/hfm/2018/04/11298_1.jpg" style="width:300px;height:510px;border:none;" /></a>');
+document.write('</div>');
+if(''!='http://' && ''!=''){document.write('<img src="" width="0" height="0" style="display:block"/>');}

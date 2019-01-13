@@ -1,0 +1,187 @@
+/*头部样式*/
+header{
+    position:relative;
+    height:200px;
+}
+.head_pic{
+    position:relative;
+    height:200px;
+}
+header .head_pic img{
+    position:absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width:100%;
+    min-width:1920px;
+}
+.head_logo a{
+    position:relative;
+}
+.head_logo a img{
+    position:absolute;
+    top:-182px;
+}
+/*头部细节部分*/
+.head_details{
+    background:#fff;
+    position:relative;
+    width:100%;
+    height:41px;
+    border-bottom:1px solid #000;
+    line-height:41px;
+}
+/*声明样式*/
+@font-face {  /*声明字体  引用字体*/
+    font-family: "icomoon";  /*我们自己起名字可以*/
+    src:  url('../fonts/icomoon.eot?7kkyc2');
+    src:  url('../fonts/icomoon.eot?7kkyc2#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?7kkyc2') format('truetype'),
+    url('../fonts/icomoon.woff?7kkyc2') format('woff'),
+    url('../fonts/icomoon.svg?7kkyc2#icomoon') format('svg');
+    font-style: normal;  /*倾斜字体正常*/
+}
+.head_details  .left i{
+    width:12px;
+    height:12px;
+    background:#000;
+    font-size:10px;
+    font-family:"icomoon";
+    color:#fff;
+    margin-right:5px;
+}
+.head_details  .left a{
+    font-family:'Microsoft Yahei','微软雅黑','Verdana';
+    font-size:12px;
+    color:#000;
+    margin-right:10px;
+}
+.head_details  .left a:hover{
+    color:#f00;
+}
+.head_details .left,.head_details .right li{
+    float:left;
+    height:41px;
+}
+.head_details .right ul{
+    float:right;
+    /*overflow:hidden;*/
+}
+.head_details .right input{
+    width:205px;
+    height:41px;
+    border:0;
+    outline:none;
+    padding-left: 14px;
+    vertical-align:bottom;
+}
+.right  li:last-child{
+    position:relative;
+    border-left:1px solid #000;
+}
+.head_details .right li:last-child s{
+    background:url(../img/header/sprit.png) no-repeat;
+    background-position:13px -317px;
+    position:absolute;
+    top:50%;
+    right:0;
+    width:41px;
+    height:32px;
+    transform:translateY(-50%);
+}
+.head_details .right li:last-child s:hover{
+    background-position:13px -364px;
+}
+
+.head_details  .follow_elle{
+    background:url(../img/header/user.jpg) no-repeat;
+    width:168px;
+    height:41px;
+    position:relative;
+}
+.follow_elle span{
+    position:absolute;
+    background:url(../img/header/red-icon.jpg);
+    top:0px;
+    left:0px;
+    width:100%;
+    height:100%;
+    /*display:none;*/
+    transition:all 0.8s;
+    z-index:-1;
+}
+.head_details  .follow_elle:hover{
+    background:url(../img/header/user-hover.jpg) no-repeat;
+}
+
+.follow_elle:hover span{
+    /*如果加上这个display过度效果出不来，暂时？*/
+    display:block;
+    transform:translateY(42px);
+}
+.head_details .login,.register{
+    color:#000;
+    margin-right:1.2rem;
+    padding-left:1.8rem;
+    height:41px;
+    display:block;
+    line-height:41px;
+}
+/*使用li做分割线*/
+.head_details li.linear{
+    width:1px;
+    height:18px;
+    background-image:linear-gradient(to bottom, #ccc 0%,#000 50%,#ccc 100% );
+    margin-top:0.8rem;
+    margin-left:-0.5rem;
+}
+/*wyj注册图片a行内元素高度不起作用*/
+.login{
+    background:url(../img/header/sprit.png) no-repeat;
+    background-position:0px -226px;
+}
+.login:hover{
+    background-position:0px -269px;
+}
+.register{
+    background:url(../img/header/sprit.png) no-repeat;
+    background-position:0px -53px;
+}
+.register:hover{
+    background-position:0px -96px;
+}
+
+/*导航栏开始*/
+.nav-inner{
+    display:flex;
+    justify-content:space-around;
+    flex-wrap:nowrap;
+    border-bottom:5px solid #000;
+    line-height: 2.4;
+}
+.nav-inner a{
+    height:100%;
+    display:block;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-family: 'Microsoft Yahei','微软雅黑','Verdana';
+}
+.nav-inner a:hover{
+    background:#FF0000;
+    color:#fff;
+}
+.nav_active{
+    background:#FF0000;
+    color:#fff;
+    margin-left:-0.1rem;
+}
+/*导航栏结束*/
+/*轮播图开始*/
+.banner_left{
+    overflow: hidden;
+    width:680px;
+}
+.banner_left li{
+    float:left;
+}
+/*轮播图结束*/

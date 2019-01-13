@@ -1,0 +1,16 @@
+(function ($) {
+    var base_action = WWW_URL + 'search.html?q=';
+    $('#homepage_search_top').submit(function () {
+        var value = $.trim($('#top_elle_search').val());
+        if (value && value!== $('#top_elle_search').attr('placeholder') ) {
+            $('#homepage_search_top').attr('action',  base_action + encodeURIComponent(value))
+        }else{
+            return false
+        }
+    })
+
+    $('#top_elle_search_btn').click(function () {
+         $('#homepage_search_top').submit()
+    })
+
+})(jQuery)

@@ -1,0 +1,35 @@
+$(document).ready(function(){
+//显示时间转换
+function time(times){
+	var data='';
+	var times=times*1000;
+	var date=new Date(times);
+	var today=new Date();
+
+  var oneday=86400000;//24*60*60*1000
+  var yesterday= today.getTime()-oneday;
+  var beforeyesterday=today.getTime()-2*oneday;
+  var threeDay=today.getTime()-3*oneday;
+
+   if(times>yesterday){//一天之内
+      if(today.getTime()-times<3600000){//1个小时内 60*60*1000 
+        data=( today.getTime()-times <='0' ? 1 : Math.floor((today.getTime()-times)/60000) )+'分钟前';
+      }else{
+        data=( today.getTime()-times <='3600000' ? 1 : Math.floor((today.getTime()-times)/3600000) )+"小时前";
+      } 
+   }else if(times == yesterday || (times < yesterday && times > beforeyesterday)){//1-2天之间
+      data="1天前";
+   }else if( times == beforeyesterday || (times < beforeyesterday && times > threeDay)){//2-3天之间
+      data="2天前";
+   }else{//3天前
+      data="3天前";
+   }
+
+	return data;
+}
+
+	//	
+	$('[data-time]').each(function(){
+		$(this).html(time($(this).attr('data-time')));
+  });	
+});	

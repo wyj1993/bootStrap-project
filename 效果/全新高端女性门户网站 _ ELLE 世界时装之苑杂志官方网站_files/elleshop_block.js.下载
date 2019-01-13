@@ -1,0 +1,243 @@
+$(document).ready(function(){
+
+    var shopUrl = location.href.split('/'),
+        shopUrlLength = shopUrl.length,
+        shopUrlLast = shopUrl[shopUrlLength-1],
+        shopUrlLastArr = shopUrlLast.split('.'),
+        shopUrlLastArrContent = shopUrlLastArr[0],
+        contentArr = shopUrlLastArrContent.split('-');
+
+    var buyNow = '立刻选购';
+    var moreStr = '更多选择 尽在ELLESHOP.com';
+    if(location.host === 'hk.ellechina.com'){
+        buyNow = '立刻選購';
+        moreStr = '更多選擇 盡在ELLESHOP.com';
+    }
+
+    var contentType = '', //内容页类型：文章或者图集
+        position = 1, //区块数据位置
+        contentChannel = shopUrl[3], //内容页所属频道
+        shopChannel = '', //ELLESHOP返回的频道数值：1,3,7
+        isManual = '', //是否手动区块
+        homeTrack = ''; //首页区块跟踪代码
+
+    var manualUrl, //手动区块接口
+        adsameUrl,
+        moreUrl; //more的链接
+
+    if (contentArr.length == 3){
+      if($.inArray('pic',contentArr) !== -1){
+        contentType = 'picarticleweeklyhot';
+      }else{
+        contentType = 'weeklyhot';
+      }
+    } else if (contentArr.length == 2 | contentArr.length == 4){
+        contentType = 'weeklyhot';
+    } else {
+        contentType = 'homepagehot';
+        contentChannel = '';
+        homeTrack = '&ref=home_15';
+    };
+
+    var templateBigM = '<li>'+
+                    '<a href="{url}?utm_source=ellechina&utm_medium='+contentType+'{position}'+contentChannel+'{shopChannel}&utm_campaign=ellechina{isManual}&Sourcename=ellechina'+homeTrack+'{autoRec}" target="_blank">'+
+                        '<img src="{img_182_204}" ls_src="{img_182_204}" width="182" height="204" >'+
+                        '<span>'+
+                            '<b>{brand}</b>'+
+                            '<i>{title}</i>'+
+                            '<em>'+buyNow+'</em>'+
+                        '</span>'+
+                    '</a>'+
+                '</li>';//手动，首页和图集，大图，无价格
+
+    var templateBigA = '<li>'+
+                    '<a href="{url}?utm_source=ellechina&utm_medium='+contentType+'{position}'+contentChannel+'{shopChannel}&utm_campaign=ellechina{isManual}&Sourcename=ellechina'+homeTrack+'{autoRec}" target="_blank">'+
+                        '<img src="{img_182_204}" ls_src="{img_182_204}" width="182" height="204" >'+
+                        '<span>'+
+                            '<b>{brand}</b>'+
+                            '<i>{title}<br/>{price}</i>'+
+                            '<em>'+buyNow+'</em>'+
+                        '</span>'+
+                    '</a>'+
+                '</li>'; //自动，首页和图集，大图，有价格
+
+    var templateSmall = '<div class="c-imgtext">'+
+                    '<a class="c-imgtext-img" href="{url}?utm_source=ellechina&utm_medium='+contentType+'{position}'+contentChannel+'{shopChannel}&utm_campaign=ellechina{isManual}&Sourcename=ellechina'+homeTrack+'{autoRec}"target="_blank" alt="{brand} {title}" title="{brand} {title}">'+
+                        '<img width="100" height="112" src="{img_100_112}"></a>'+
+                    '<a class="c-imgtext-text" href="{url}?utm_source=ellechina&utm_medium='+contentType+'{position}'+contentChannel+'{shopChannel}&utm_campaign=ellechina{isManual}&Sourcename=ellechina'+homeTrack+'{autoRec}" class="fz-12 cor-000 b" target="_blank" alt="{brand} {title}" title="{brand} {title}">{brand}</a>'+
+                    '<a class="c-imgtext-text" href="{url}?utm_source=ellechina&utm_medium='+contentType+'{position}'+contentChannel+'{shopChannel}&utm_campaign=ellechina{isManual}&Sourcename=ellechina'+homeTrack+'{autoRec}" class="fz-12" target="_blank" alt="{brand} {title}" title="{brand} {title}">{title}</a>'+
+                '</div>'; //自动和手动，文章，小图，无价格
+
+
+    var templateMoreB = '<li>'+
+                '<a href="{moreUrl}?utm_source=ellechina&utm_medium='+contentType+'more'+contentChannel+'{shopChannel}&utm_campaign=ellechinaregular&Sourcename=ellechina'+homeTrack+'{autoRec}" target="_blank">'+
+                    '<img src="http://images.ellechina.com/templates/ellechina/new2014/img/common/article_elleshop_more.png" ls_src="http://images.elleshop.com.cn/IPPCMSUploadFiles/neweggpic2/neg/P160/A03-426-360-02.jpg" width="182" height="204">'+
+                    '<span>'+
+                        '<b>More Choice</b>'+
+                        '<i>'+moreStr+'</i>'+
+                        '<em>'+buyNow+'</em>'+
+                    '</span>'+
+                '</a>'+
+            '</li>';//大图More
+
+    var templateMoreS = '<div class="c-imgtext">'+
+                '<a class="c-imgtext-img" href="{moreUrl}?utm_source=ellechina&utm_medium='+contentType+'more'+contentChannel+'{shopChannel}&utm_campaign=ellechinaregular&Sourcename=ellechina'+homeTrack+'{autoRec}" target="_blank">'+
+                    '<img src="http://images.ellechina.com/templates/ellechina/css/images/elleshop_more_100_112.jpg" ls_src="http://images.elleshop.com.cn/IPPCMSUploadFiles/neweggpic2/neg/P100/A03-426-360-02.jpg" alt=""></a>'+
+                '<a class="c-imgtext-text" href=""></a>'+
+            '</div>';//小图More
+
+
+    if($('.elleshop ul').size() === 0)
+      return ;
+    if(typeof elleshop_run_num !== 'undefined')
+      return ;
+    elleshop_run_num = true;
+
+
+    var template,
+        templateMore;
+
+    //$.ajax({
+        //cache:false,
+        //url: "http://elshop.adsame.com:8088/?cmd=263&type=jsonp&elle=1&t=" + new Date().getTime(),
+        //dataType: 'jsonp',
+        //jsonp: 'callback',
+        //jsonpCallback:"success_jsonpCallback",
+        //timeout: 5000,
+        //success: function (res) {
+            //data = typeof(res['tpl_id']) != 'undefined' ? res['tpl_id'] : 1;
+            //shopChannel = data;
+            //if (data == 1){
+            manualUrl = '/section/1905.html';
+            adsameUrl = 'http://ellepromo.adsame.com:8088/?cmd=263&elle=2&last=10&type=jsonp&t='+ new Date().getTime();
+            moreUrl = 'http://www.elleshop.com.cn/new-arrivals/ellegirl.htm';
+
+            //} else if (data == 3){
+                //manualUrl = 'http://www.ellechina.com/section/1906.html';
+                //moreUrl = 'http://www.elleshop.com.cn/lifestyle.shtml'
+            //} else if (data == 7){
+                //manualUrl = 'http://www.ellechina.com/section/1904.html';
+                //moreUrl = 'http://www.elleshop.com.cn/new-arrivals/ellegirl.htm'
+            //};
+            $.ajax({
+                url: manualUrl,
+                cache: true,
+                dataType: 'json',
+                success: function (data) {
+                    isManual = 'hotcamp';
+                    if (contentType == 'weeklyhot') {
+                        template = templateSmall;
+                        templateMore = templateMoreS;
+                    } else {
+                        template = templateBigM;
+                        templateMore = templateMoreB;
+                    };
+                    var block = template,
+                        more = templateMore,
+                        list = '';
+                    var numLeft;
+                    $(data).each(function(i,item){
+                        if (position<5) {
+                            $.each(item, function(key){
+                                block = block.replace(new RegExp('{'+key+'}',"gm"), item[key]);
+                            });
+                            block = block.replace(new RegExp('{position}',"gm"), position);
+                            position ++;
+                            list += block;
+                            block = template;
+                        }
+                    });
+                    list = list.replace(new RegExp('{isManual}',"gm"), isManual);
+                    list = list.replace(new RegExp('{autoRec}',"gm"), '');
+
+                    if(position<5) {
+                        numLeft = 5 - position;
+                        var _params = {
+                            url: adsameUrl,
+                            cache:false,
+                            dataType: 'jsonp',
+                            jsonp: 'callback',
+                            timeout: 10000
+                        };
+                        //hk的判断
+                        if(location.host === 'hk.ellechina.com') {
+                          _params = {
+                              url: 'http://hk.ellechina.com/hk/translate?surl=' + encodeURIComponent(adsameUrl),
+                              cache:false,
+                              dataType: 'json',
+                          };
+                        }
+                        $.ajax(_params).done(function(data){
+                                if(location.host !== 'hk.ellechina.com')
+                                  data = data.tpl_id;
+                                data = data.splice(0, numLeft);
+                                isManual = 'regular';
+                                if (contentType == 'weeklyhot') {
+                                    template = templateSmall;
+                                    templateMore = templateMoreS;
+                                } else {
+                                    template = templateBigA;
+                                    templateMore = templateMoreB;
+                                };
+                                block = template;
+                                more = templateMore;
+                                $(data).each(function(i,item){
+                                    $.each(item, function(key){
+                                        block = block.replace(new RegExp('{'+key+'}',"gm"), item[key]);
+                                    });
+                                    sam.addShowcase(item.category, item.title, item.productid, item.sku);
+
+                                    block = block.replace(new RegExp('{position}',"gm"), position);
+                                    position ++;
+                                    list += block;
+                                    block = template;
+                                });
+                                sam.getShowcase();
+                                more = more.replace(new RegExp('{moreUrl}', 'gm'), moreUrl);
+                                more = more.replace(new RegExp('{autoRec}',"gm"), '');
+                                list += more;
+                                if(contentType == 'homepagehot') {
+                                    shopChannel = '';
+                                };
+                                list = list.replace(new RegExp('{isManual}',"gm"), isManual);
+                                list = list.replace(new RegExp('{shopChannel}', 'gm'), shopChannel);
+                                list = list.replace(new RegExp('{autoRec}',"gm"), '&autoRec=1');
+                                $('.elleshop ul').html(list);
+                                $('.elleshop ul').find('li').first().addClass('first');
+                                $('.elleshop ul').find('li').filter(":odd").addClass('odd');
+                        }).fail(function(){
+                                _gaq.push(['_trackEvent', location.href, 'debug', 'ELLESHOP自动接口问题']);
+                        });
+                    } else {
+                        more = more.replace(new RegExp('{moreUrl}', 'gm'), moreUrl);
+                        list += more;
+                        if(contentType == 'homepagehot') {
+                            shopChannel = '';
+                        };
+                        list = list.replace(new RegExp('{shopChannel}', 'gm'), shopChannel);
+                        $('.elleshop ul').html(list);
+                        $('.elleshop ul').find('li').first().addClass('first');
+                        $('.elleshop ul').find('li').filter(":odd").addClass('odd');
+
+                    };
+                },
+                error: function (){
+                    _gaq.push(['_trackEvent', location.href, 'debug', 'ELLECHINA手动接口问题']);
+                }
+            });
+
+            var title_href = '';
+            if(contentType == 'weeklyhot'){
+                title_href = 'http://www.elleshop.com.cn/women.shtml?utm_source=ellechina&utm_medium=weeklyhot'+contentChannel+'1&utm_campaign=ellechinaregular&Sourcename=ellechina';
+            }else if(contentType == 'picarticleweeklyhot'){
+                title_href = 'http://www.elleshop.com.cn/women.shtml?utm_source=ellechina&utm_medium=picarticleweeklyhot'+contentChannel+'1&utm_campaign=ellechinaregular&Sourcename=ellechina';
+            }
+            $(".elleshop").prev().find('a').each(function(){
+                $(this).attr('href', title_href);
+            });
+        //},
+        //error: function(){
+            //_gaq.push(['_trackEvent', location.href, 'debug', 'adsame接口问题']);
+        //}
+    });
+
