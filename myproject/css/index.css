@@ -1,7 +1,6 @@
 /*头部样式*/
 header{
     position:relative;
-    height:200px;
 }
 .head_pic{
     position:relative;
@@ -30,16 +29,6 @@ header .head_pic img{
     height:41px;
     border-bottom:1px solid #000;
     line-height:41px;
-}
-/*声明样式*/
-@font-face {  /*声明字体  引用字体*/
-    font-family: "icomoon";  /*我们自己起名字可以*/
-    src:  url('../fonts/icomoon.eot?7kkyc2');
-    src:  url('../fonts/icomoon.eot?7kkyc2#iefix') format('embedded-opentype'),
-    url('../fonts/icomoon.ttf?7kkyc2') format('truetype'),
-    url('../fonts/icomoon.woff?7kkyc2') format('woff'),
-    url('../fonts/icomoon.svg?7kkyc2#icomoon') format('svg');
-    font-style: normal;  /*倾斜字体正常*/
 }
 .head_details  .left i{
     width:12px;
@@ -178,10 +167,38 @@ header .head_pic img{
 /*导航栏结束*/
 /*轮播图开始*/
 .banner_left{
-    overflow: hidden;
     width:680px;
-}
-.banner_left li{
+    margin-top:2rem;
     float:left;
+}
+.banner>.banner_left>ul:first-child{
+    position:relative;
+    height:440px;
+}
+.banner>.banner_left>ul:first-child li{
+    position:absolute;
+    top:0;
+    left:0;
+    opacity:0;  
+    transition:all 0.5s linear;
+}
+.banner>.banner_left>ul:first-child li.open{
+    opacity:1;
+}
+.banner>.banner_left>.banner_bottom>ul>li{
+    float:left;
+    width:33.3%;
+    text-align:left;
+}
+.banner>.banner_left>.banner_bottom>ul>li a{
+    font:14px/30px 'Microsoft Yahei','微软雅黑','Verdana';
+    color:#000; 
+}
+.banner>.banner_left>.banner_bottom>ul>li a:hover{
+    text-decoration:underline;
+}
+.banner_right{
+    float:right;
+    margin-top:2rem;
 }
 /*轮播图结束*/
