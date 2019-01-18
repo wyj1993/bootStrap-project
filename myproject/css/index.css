@@ -31,6 +31,11 @@ header .head_pic img{
     border-bottom:1px solid #000;
     line-height:41px;
 }
+.head_details>div:after{
+    content:"";
+    display:block;
+    clear:both;
+}
 .head_details  .left i{
     width:12px;
     height:12px;
@@ -46,6 +51,11 @@ header .head_pic img{
     color:#000;
     margin-right:10px;
 }
+.head_details .right:after{
+    content:"";
+    display:block;
+    clear:both;
+}
 .head_details  .left a:hover{
     color:#f00;
 }
@@ -53,7 +63,7 @@ header .head_pic img{
     float:left;
     height:41px;
 }
-.head_details .right ul{
+.head_details .right{
     float:right;
     /*overflow:hidden;*/
 }
