@@ -15,6 +15,12 @@ a{
 li{
     list-style:none;
 }
+.fl{
+    float:left;
+}
+.fr{
+    float:right;
+}
 img{
     vertical-align:top;
     border:0 none;
@@ -28,11 +34,6 @@ img{
     url('../fonts/icomoon.woff?7kkyc2') format('woff'),
     url('../fonts/icomoon.svg?7kkyc2#icomoon') format('svg');
     font-style: normal;  /*ÇãÐ±×ÖÌåÕý³£*/
-}
-.clearfix{
-    content:"";
-    display:block;
-    clear:both;
 }
 .my_small{
     font-size:0.8rem;

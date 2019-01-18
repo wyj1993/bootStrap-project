@@ -5,7 +5,7 @@
     <title></title>
     <link rel="stylesheet" href="css/index.css"/>
     <link rel="stylesheet" href="css/base.css"/>
-    
+    <script src="js/jquery-1.11.3.js"></script>
 </head>
 <body>
 
@@ -16,13 +16,13 @@
         </div>
         <!-- 头部logo-->
         <div class="head_logo w">
-            <a href="#">
+            <a href="javascript:;">
                 <img src="img/header/logo_white.png" alt=""/>
             </a>
         </div>
          <!--头部细节点-->
         <div class="head_details ">
-            <div class="w clearfix">
+            <div class="w">
                 <div class="left">
                         <a href="#"><i></i>杂志订阅</a>
                         <a href="#"><i></i>ELLE信用卡</a>
@@ -44,60 +44,124 @@
                     </ul>
                 </div>
             </div>
-        </div>
-        
+        </div>  
         <!-- 导航栏开始-->
-        <div class="nav w clearfix">
+        <div class="nav w">
             <ul class="nav-inner">
-                <li><a href="" class="nav_active">首页</a></li>
-                <li><a href="">时装</a></li>
-                <li><a href="">奢华</a></li>
-                <li><a href="">美容</a></li>
-                <li><a href="">美妆</a></li>
-                <li><a href="">美发</a></li>
-                <li><a href="">明星</a></li>
-                <li><a href="">珠宝</a></li>
-                <li><a href="">腕表</a></li>
-                <li><a href="">生活</a></li>
-                <li><a href="">新娘</a></li>
-                <li><a href="">专题</a></li>
-                <li><a href="">文娱</a></li>
-                <li><a href="">家居</a></li>
-                <li><a href="">论坛</a></li>
-                <li><a href="">博客</a></li>
-                <li><a href="">ELLEfit</a></li>
-                <li><a href="">SuperELLE</a></li>
+                <li class="nav_active"><a href="#" >首页</a></li>
+                <li><a href="#" data-target="#content1" data-toggle="nav">时装</a></li>
+                <li><a href="#" data-target="#content2" data-toggle="nav">奢华</a></li>
+                <li><a href="#">美容</a></li>
+                <li><a href="#">美妆</a></li>
+                <li><a href="#">美发</a></li>
+                <li><a href="#">明星</a></li>
+                <li><a href="#">珠宝</a></li>
+                <li><a href="#">腕表</a></li>
+                <li><a href="#">生活</a></li>
+                <li><a href="#">新娘</a></li>
+                <li><a href="#">专题</a></li>
+                <li><a href="#">文娱</a></li>
+                <li><a href="#">家居</a></li>
+                <li><a href="#">论坛</a></li>
+                <li><a href="#">博客</a></li>
+                <li><a href="#">ELLEfit</a></li>
+                <li><a href="#">SuperELLE</a></li>
             </ul>
-        </div>
+            <div class="sub-nav">
+                <div id="content1" >
+                    <div class="bc-left fl">
+                        <ul>
+                           <li><a href="#">星衣Q</a></li>
+                           <li><a href="#">穿搭</a></li>
+                           <li><a href="#">长草</a></li>
+                           <li><a href="#">前沿</a></li>
+                           <li><a href="#">街拍</a></li>
+                           <li><a href="#">新鲜事</a></li>
+                           <li><a href="#">时装周</a></li>
+                        </ul>
+                    </div>  
+                    <div class="bc-right fl">
+                        <div>
+                            <ul>
+                                <li class="fl"><a href="#"><img src="img/index/dress.jpg" ><p>最红最显瘦的“茶歇裙”火了！</p></a></li>
+                                <li class="fl"><a href="#"><img src="img/index/pants.jpg" ><p>T恤+阔腿裤准备好了吗？</p></a></li>
+                                <li class="fl"><a href="#"><img src="img/index/sweatshirt.jpg" ><p>如何把运动衫穿时髦？</p></a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul>
+                                <li class="fl" ><a href="#">时髦的人就是爱穿毛衣裙+长靴！</a></li>
+                                <li class="fl"><a href="#">直筒裤+短靴显瘦保暖！</a></li>
+                                <li class="fl"><a href="#">白毛衣＋牛仔裤穿成一股清流！</a></li>
+                                <li class="fl"><a href="#">浴袍式大衣如何穿出“高级”气场！</a></li>
+                            </ul>
+                        </div> 
+                    </div>
+                </div>
+                <div id="content2" >
+                    <div class="bc-left fl">
+                        <ul>
+                           <li><a href="#">尖货</a></li>
+                           <li><a href="#">星包潮搭</a></li>
+                           <li><a href="#">星鞋榜样</a></li>
+                           <li><a href="#">星装瞬间</a></li>
+                           <li><a href="#">奢华大片</a></li>
+                           <li><a href="#">奢品课堂</a></li>
+                           <li><a href="#">谈资</a></li>
+                           <li><a href="#">高定</a></li>
+                        </ul>
+                    </div>  
+                    <div class="bc-right fl">
+                        <div>
+                            <ul>
+                                <li class="fl"><a href="#"><img src="img/index/chanel.jpg" ><p>香奈儿的博物馆奇妙夜！</p></a></li>
+                                <li class="fl"><a href="#"><img src="img/index/feather.jpg" ><p>冬天穿厚西装照样有型！</p></a></li>
+                                <li class="fl"><a href="#"><img src="img/index/winter.jpg" ><p>羽毛装的美，你知道吗？</p></a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul>
+                                <li class="fl" ><a href="#">香奈儿的博物馆奇妙夜！</a></li>
+                                <li class="fl"><a href="#">羽毛装的美，你知道吗？</a></li>
+                                <li class="fl"><a href="#">冬天穿厚西装照样有型！</a></li>
+                                <li class="fl"><a href="#">高领毛衣裙美翻整个冬天！</a></li>
+                            </ul>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+    </div>
         <!-- 导航栏结束-->
     </header>
-    <!-- 轮播图部分开始-->
+    <!-- 轮播图部分开始--> 
     <div class="banner w">
-        <div class="banner_left">
+        <div class="banner_left fl">
             <ul>
-                <li class="open"><a href=""><img src="img/header/banner1.jpg" alt=""/></a></li>
-                <li><a href=""><img src="img/header/banner2.jpg" alt=""/></a></li>
-                <li><a href=""><img src="img/header/banner3.jpg" alt=""/></a></li>
-                <li><a href=""><img src="img/header/banner4.jpg" alt=""/></a></li>
+                <li class="open">
+                    <a href="http://www.baidu.com"><img src="img/header/banner1.jpg" alt=""/></a>
+                </li>
+                <li><a href="http://www.baidu.com"><img src="img/header/banner2.jpg" alt=""/></a></li>
+                <li><a href="http://www.baidu.com"><img src="img/header/banner3.jpg" alt=""/></a></li>
+                <li><a href="http://www.baidu.com"><img src="img/header/banner4.jpg" alt=""/></a></li>
                 <li><a href=""><img src="img/header/banner5.jpg" alt=""/></a></li>
             </ul>
             <div class="banner_bottom">
                 <ul>
-                    <li><a href="javascript:;">毛衣塞个角会变美！</a></li>
-                    <li><a href="javascript:;">53岁巩俐路拍美若少女太惊艳！</a></li>
-                    <li><a href="javascript:;">《孤城闭》官宣，最受瞩目的是她</a></li>
-                    <li><a href="javascript:;">“毯子装”帮你挡风变潇洒</a></li> 
-                    <li><a href="javascript:;">第七次维密走秀刘雯小宇宙待爆！</a></li>
-                    <li><a href="javascript:;">宋茜唐嫣各个都争当女王</a></li>
+                    <li class="fl"><a href="">毛衣塞个角会变美！</a></li>
+                    <li class="fl"><a href="">53岁巩俐路拍美若少女太惊艳！</a></li>
+                    <li class="fl"><a href="">《孤城闭》官宣，最受瞩目的是她</a></li>
+                    <li class="fl"><a href="">“毯子装”帮你挡风变潇洒</a></li> 
+                    <li class="fl"><a href="">第七次维密走秀刘雯小宇宙待爆！</a></li>
+                    <li class="fl"><a href="">宋茜唐嫣各个都争当女王</a></li>
                 </ul>
             </div>
         </div>
-        <div class="banner_right">
-            <a href="#">
+        <div class="banner_right fr">
+            <a href="">
                 <img src="img/header/banner_right.jpg" alt="">
             </a>
         </div>
-    </div>
+    </div> 
 
      <!--轮播图部分结束-->
      <script src="js/index.js"></script>
