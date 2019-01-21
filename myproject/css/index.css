@@ -286,6 +286,7 @@ div.sub-nav div.bc-right>div:first-child li{
 }
 .banner>.banner_left>ul:first-child li.open{
     opacity:1;
+    z-index:10;
 }
 .banner>.banner_left>.banner_bottom>ul>li{
     width:33.3%;

@@ -1,24 +1,24 @@
 
-    (function(){
-        /****banner */
-        /*
+    $(function(){
+        /****banner ******/
+    var $Ul=$("[data-toggle=banner]");
     function banner(){
-    var li=document.querySelector(".banner>.banner_left>ul:first-child>li.open");
-    li.className="";
-    if(li.nextElementSibling!=null){
-        li.nextElementSibling.className="open";
+    var $li=$("li.open");
+    $li.removeClass("open");
+    if($li.next().is("li")){
+        $li.next().addClass("open") 
     }else{
-        li.parentElement.children[0].className="open";
+        $Ul.children(":first")
+        .addClass("open")
     }
  }
-    var n=setInterval(banner,8000)
-    var bannerUl=document.querySelector(".banner>.banner_left>ul:first-child");
-    bannerUl.onmouseover=function(){
-        clearInterval(n);
-    }
-    bannerUl.onmouseout=function(){
-        n=setInterval(banner,3000);
-    }*/
+    var n=setInterval(banner,1000)
+    $Ul.mouseenter(function(){
+        clearInterval(n)
+    })
+    $Ul.mouseleave(function(){
+        n=setInterval(banner,3000)
+    })
     /*****  sub-nav *** */
     $(".sub-nav").children().hide();
     $("[data-toggle=nav]").mouseenter(
@@ -49,5 +49,4 @@
 
 
 
-
-})()
+    })
